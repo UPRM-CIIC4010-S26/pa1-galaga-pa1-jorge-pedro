@@ -12,7 +12,7 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 ## Grading
 
 (STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
-(STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
+(802-23-9334) (Jorge A. Saldarriaga) (jorge.saldarriaga@upr.edu)
 
 Any project that doesn't compile will receive a 0.
 
