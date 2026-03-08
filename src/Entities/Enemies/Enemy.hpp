@@ -18,7 +18,7 @@ class Enemy {
         
     public:
         int health = 1;
-        int scoreValue = 0;
+        int ScoreValue = 0;
          
         std::pair<float, float> position;
         HitBox hitBox;
@@ -26,7 +26,7 @@ class Enemy {
         inline static float direction = 0.5;
         inline static int directionChange = 100;
         inline static std::vector<std::pair<std::pair<float, float>, Enemy*>> enemies;
-         inline static int score= 0;
+         inline static int Score= 0;
 
         Enemy() {}
 
@@ -63,7 +63,7 @@ class Enemy {
                     }
 
                     if (p.second->health <= 0) {
-                        Enemy:: score += p.second-> scoreValue;
+                        Enemy:: Score += p.second-> ScoreValue;
 
                         Animation::animations.push_back(
                             Animation(p.second->position.first, p.second->position.second, 155, 0, 33, 33, 30, 30, 4, ImageManager::SpriteSheet)

@@ -67,7 +67,7 @@ void Program::Update() {
 
         }
 
-        if( Enemy:: score >= scoreForLife)
+        if( Enemy:: Score >= scoreForLife)
         {
             if(lives < 5)
             lives++;
@@ -91,7 +91,7 @@ void Program::Draw() {
                    Rectangle{10.0f + i * 30, GetScreenHeight() - 30.0f, 20, 20}, 
                    Vector2{0, 0}, 0, WHITE);
     }
-DrawText(TextFormat("Total Score: %d", Enemy:: score), 10, 10, 20, WHITE);
+DrawText(TextFormat("Total Score: %d", Enemy:: Score), 10, 10, 20, WHITE);
 
     for (Projectile p : Projectile::projectiles) p.draw();
     for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) if (p.second) p.second->draw();
@@ -174,7 +174,7 @@ void Program::KeyInputs() {
     if (!paused && !startup && IsKeyPressed('O')) gameOver = !gameOver;
     if (!gameOver && !paused && IsKeyPressed('I')) startup = !startup;
     if (IsKeyPressed('H')) HitBox::drawHitbox = !HitBox::drawHitbox;
-    if(IsKeyPressed('K')){ Enemy:: score+= 500; }
+    if(IsKeyPressed('K')){ Enemy:: Score+= 500; }
     if (gameOver && IsKeyPressed(KEY_ENTER)) {
         gameOver = false;
         Reset();
@@ -209,7 +209,7 @@ void Program::Reset() {
     count = 0;
     delay = 0;
     lives = 3;
-    Enemy:: score = 0;
+    Enemy:: Score = 0;
     scoreForLife= 1000;
 
     Enemy::enemies.push_back(std::pair<std::pair<float, float>, Enemy*> {
