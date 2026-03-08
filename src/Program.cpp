@@ -39,9 +39,12 @@ void Program::Update() {
         StdEnemy::attackReset();
         ManageEnemyRespawns();
         player->update();
-
+   
         for (std::pair<std::pair<float, float>, Enemy*> p : Enemy::enemies) {
             if (p.second && HitBox::Collision(player->hitBox, p.second->hitBox)) {
+              
+                
+               
                 Animation::animations.push_back(
                     Animation(player->position.first, player->position.second, 16, 0, 33, 34, 30 ,30, 3, ImageManager::SpriteSheet)
                 );
@@ -64,6 +67,14 @@ void Program::Update() {
 
         }
 
+        if( Enemy:: score >= scoreForLife)
+        {
+            if(lives < 5)
+            lives++;
+
+            scoreForLife += 1000;
+        }
+
         if (lives <= 0 && pauseFrames <= 0) gameOver = true;
         Projectile::CleanProjectiles();
         Projectile::ProjectileCollision();
@@ -80,7 +91,7 @@ void Program::Draw() {
                    Rectangle{10.0f + i * 30, GetScreenHeight() - 30.0f, 20, 20}, 
                    Vector2{0, 0}, 0, WHITE);
     }
-
+DrawText(TextFormat("Total Score: %d", Enemy:: score), 10, 10, 20, WHITE);
 
     for (Projectile p : Projectile::projectiles) p.draw();
     for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) if (p.second) p.second->draw();
@@ -95,7 +106,10 @@ void Program::ManageEnemyRespawns() {
 
     respawnCooldown -= 1;
     if (respawnCooldown <= 0) {
-        respawnCooldown = 1080;
+    
+int difficultyReduction = score / 2000;
+respawnCooldown = std::max(1080 - difficultyReduction * 60, 300);
+
         for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
             if (!p.second && p.first.second != 150) {
                 int eType = GetRandomValue(0,2);
@@ -133,6 +147,10 @@ void Program::ManageEnemyRespawns() {
     }
 }
 
+
+
+
+
 void Program::DrawStartup() {
     DrawRectangle(0, 0, (float)GetScreenWidth(), (float)GetScreenHeight(), Color{0, 0, 0, 125});
     DrawText("Galaga", (GetScreenWidth() / 2 - 237), 75, 144, WHITE);
@@ -156,7 +174,7 @@ void Program::KeyInputs() {
     if (!paused && !startup && IsKeyPressed('O')) gameOver = !gameOver;
     if (!gameOver && !paused && IsKeyPressed('I')) startup = !startup;
     if (IsKeyPressed('H')) HitBox::drawHitbox = !HitBox::drawHitbox;
-    
+    if(IsKeyPressed('K')){ Enemy:: score+= 500; }
     if (gameOver && IsKeyPressed(KEY_ENTER)) {
         gameOver = false;
         Reset();
@@ -191,6 +209,8 @@ void Program::Reset() {
     count = 0;
     delay = 0;
     lives = 3;
+    Enemy:: score = 0;
+    scoreForLife= 1000;
 
     Enemy::enemies.push_back(std::pair<std::pair<float, float>, Enemy*> {
             std::pair<float, float>{350, 150}, 

@@ -1,6 +1,7 @@
 #include "StEnemy.hpp"
 
 void StEnemy::draw() {
+    
     if (HitBox::drawHitbox) this->hitBox.draw();
     DrawTexturePro(ImageManager::SpriteSheet, Rectangle{2, 111, 13, 13}, 
                                 Rectangle{this->position.first, this->position.second, 30, 30}, 

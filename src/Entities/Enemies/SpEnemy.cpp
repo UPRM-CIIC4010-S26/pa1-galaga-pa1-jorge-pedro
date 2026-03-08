@@ -2,6 +2,7 @@
 
 
 void SpEnemy::draw() {
+    this-> scoreValue = 100;
     if (HitBox::drawHitbox) this->hitBox.draw();
     if (health > 2) {
         if (!frame) {

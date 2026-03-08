@@ -29,6 +29,7 @@ void DyEnemy::update(std::pair<float, float> pos, HitBox target) {
     this->position.second += 3 * sin(angle * M_PI / 180);
     this->hitBox.box.x = this->position.first;
     this->hitBox.box.y = this->position.second;
+    
 
     if (this->cooldown <= 0) {
         Projectile::projectiles.push_back(Projectile(Projectile(position.first + 15, position.second, 1)));
