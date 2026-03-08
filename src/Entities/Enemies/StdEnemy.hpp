@@ -1,21 +1,25 @@
 #pragma once
 #include "Enemy.hpp"
 
+
 class StdEnemy : public Enemy {
-    private: 
+    private:
         float angle = 90;
         int specialCooldown = GetRandomValue(300, 3600);
         int type = GetRandomValue(1, 2);
         inline static int attackCooldown = 360;
 
+
     public:
         inline static bool attackInProgress = false;
 
-        StdEnemy(float x, float y) : Enemy(x, y) { 
+
+        StdEnemy(float x, float y) : Enemy(x, y) {
             this->cooldown = GetRandomValue(240, 1380);
-            this->health = 2; 
+            this->health = 2;
             this->ScoreValue=300;
         }
+
 
         StdEnemy(float x, float y, bool newSpawn) : Enemy(x, y){
             this->cooldown = GetRandomValue(300, 1380);
@@ -24,9 +28,11 @@ class StdEnemy : public Enemy {
             this->ScoreValue=300;
         }
 
+
         void draw() override;
         void update(std::pair<float, float> pos, HitBox target) override;
         void attack(HitBox target) override;
+
 
         static void attackReset() {
             if (attackInProgress) {
@@ -34,6 +40,7 @@ class StdEnemy : public Enemy {
             } else {
                 attackCooldown = 360;
             }
+
 
             if (attackCooldown <= 0) {
                 attackInProgress = false;

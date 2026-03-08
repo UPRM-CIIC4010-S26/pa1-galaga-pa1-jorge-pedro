@@ -1,21 +1,24 @@
 #pragma once
 #include "Enemy.hpp"
 
+
 class SpEnemy : public Enemy {
-    private: 
+    private:
         float angle = 90;
         int delay = 0;
         int specialCooldown = GetRandomValue(1380, 3600);
         bool stop = false;
      
 
+
     public:
    
-        SpEnemy(float x, float y) : Enemy(x, y) { 
-            this->cooldown = GetRandomValue(300, 1380); 
+        SpEnemy(float x, float y) : Enemy(x, y) {
+            this->cooldown = GetRandomValue(300, 1380);
             this->health = 4;
             this-> ScoreValue = 100;
         }
+
 
         SpEnemy(float x, float y, bool newSpawn) : Enemy(x, y){
             this->cooldown = GetRandomValue(360, 1380);
@@ -23,6 +26,7 @@ class SpEnemy : public Enemy {
             this->spawning = newSpawn;
              this-> ScoreValue = 100;
         }
+
 
         void draw() override;
         void update(std::pair<float, float> pos, HitBox target) override;

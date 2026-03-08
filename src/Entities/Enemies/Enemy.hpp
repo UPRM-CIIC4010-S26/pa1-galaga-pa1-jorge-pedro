@@ -5,6 +5,7 @@
 #include "Animation.hpp"
 #include <iostream>
 
+
 class Enemy {
     protected:
         float angle = 90;
@@ -14,8 +15,8 @@ class Enemy {
         bool frame = false;
         int frameCooldown = 30;
        
-        
-        
+       
+       
     public:
         int health = 1;
         int ScoreValue = 0;
@@ -23,12 +24,15 @@ class Enemy {
         std::pair<float, float> position;
         HitBox hitBox;
 
+
         inline static float direction = 0.5;
         inline static int directionChange = 100;
         inline static std::vector<std::pair<std::pair<float, float>, Enemy*>> enemies;
          inline static int Score= 0;
 
+
         Enemy() {}
+
 
         Enemy(float x, float y) {
             position.first = x;
@@ -36,12 +40,15 @@ class Enemy {
             hitBox = HitBox(x, y, 30, 30);
         }
 
+
         virtual void draw() = 0;
         virtual void update(std::pair<float, float> pos, HitBox target) = 0;
         virtual void attack(HitBox target) = 0;
 
+
         void frameChange() {
             frameCooldown--;
+
 
              if (frameCooldown <= 0) {
                 frame = !frame;
@@ -49,11 +56,13 @@ class Enemy {
              }
         }
 
+
         static void ManageEnemies(HitBox target) {
             for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
                 p.first.first += (p.first.first == 0) ? 0 : direction;
                 if (p.second) {
                     p.second->update(p.first, target);
+
 
                     for (Projectile& p2 : Projectile::projectiles) {
                         if (p2.ID != 1 && HitBox::Collision(p.second->hitBox, p2.getHitBox())) {
@@ -62,8 +71,10 @@ class Enemy {
                         }
                     }
 
+
                     if (p.second->health <= 0) {
                         Enemy:: Score += p.second-> ScoreValue;
+
 
                         Animation::animations.push_back(
                             Animation(p.second->position.first, p.second->position.second, 155, 0, 33, 33, 30, 30, 4, ImageManager::SpriteSheet)
@@ -73,15 +84,17 @@ class Enemy {
                     }
                 }
             }
-            
+           
             for (int i = 0; i < Enemy::enemies.size(); i++) {
-                if ((Enemy::enemies[i].second && Enemy::enemies[i].second->position.first <= -30) || 
+                if ((Enemy::enemies[i].second && Enemy::enemies[i].second->position.first <= -30) ||
                     (!Enemy::enemies[i].second && Enemy::enemies[i].first.first == 0 && Enemy::enemies[i].first.second == 0)) {
                     Enemy::enemies.erase(Enemy::enemies.begin() + i);
                 }
             }
 
+
             directionChange++;
+
 
             if (directionChange >= 200) {
                 directionChange = 0;
@@ -89,3 +102,5 @@ class Enemy {
             }
         }
 };
+
+

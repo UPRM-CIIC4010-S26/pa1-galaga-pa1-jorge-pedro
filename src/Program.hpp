@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <iostream>
 #include <string>
 #include "raylib-cpp/raylib-cpp.hpp"
@@ -21,15 +22,17 @@ class Program {
         int pauseFrames = 0;
         int score = 0;
         int scoreForLife = 1000;
-        
+       
+
 
         bool startup = true;
         bool paused = false;
         bool gameOver = false;
 
+
     public:
         Program();
-        
+       
         void Update();
         void Draw();
         void ManageEnemyRespawns();
@@ -39,6 +42,6 @@ class Program {
         void KeyInputs();
         void PlayerReset();
         void Reset();
-          
+         
         ~Program() {}
 };
