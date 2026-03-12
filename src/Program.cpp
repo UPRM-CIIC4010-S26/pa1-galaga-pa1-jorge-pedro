@@ -117,6 +117,7 @@ DrawText(TextFormat("Total Score: %d", Enemy:: Score), 10, 10, 20, WHITE);
     if (startup) DrawStartup();
     if (paused) DrawPauseScreen();
     if (gameOver) DrawGameOver();
+    if(win)DrawWinScreen();
 }
 
 
@@ -201,6 +202,12 @@ void Program::DrawGameOver() {
     DrawText("Game Over", (GetScreenWidth() / 2) - 380, 50, 144, WHITE);
     DrawText("Press Enter", (GetScreenWidth() / 2) - 75, GetScreenHeight() / 2, 24, GRAY);
 }
+void Program::DrawWinScreen() {
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Color{0,0,0,125});
+    DrawText("YOU WIN!", (GetScreenWidth() / 2 - 237), 75, 144, WHITE);
+    DrawText("Please leave, Cheater", (GetScreenWidth()/ 2) - 75, GetScreenHeight() / 2, 24, WHITE);
+}
+
 
 
 void Program::KeyInputs() {
@@ -212,7 +219,18 @@ void Program::KeyInputs() {
     if (gameOver && IsKeyPressed(KEY_ENTER)) {
         gameOver = false;
         Reset();
+      
+
     }
+       if (IsKeyPressed('M')) {
+    for (auto &[pos, enemy] : Enemy::enemies) {
+         
+            enemy->health = 0;
+           
+       
+       win = true;
+    }
+}
 
 
     if (startup && IsKeyPressed(KEY_ENTER)) {

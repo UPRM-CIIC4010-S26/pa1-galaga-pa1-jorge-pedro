@@ -28,6 +28,7 @@ class Program {
         bool startup = true;
         bool paused = false;
         bool gameOver = false;
+         bool win = false;
 
 
     public:
@@ -39,9 +40,10 @@ class Program {
         void DrawStartup();
         void DrawPauseScreen();
         void DrawGameOver();
+        void DrawWinScreen();
         void KeyInputs();
         void PlayerReset();
         void Reset();
          
-        ~Program() {}
+        ~Program() {};
 };
