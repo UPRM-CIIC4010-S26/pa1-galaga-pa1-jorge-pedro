@@ -11,7 +11,7 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 
 ## Grading
 
-(STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
+(802-23-2629) (Pedro I. Mauras Ramirez) (pedro.mauras@upr.edu)
 (802-23-9334) (Jorge A. Saldarriaga) (jorge.saldarriaga@upr.edu)
 
 Any project that doesn't compile will receive a 0.
@@ -22,3 +22,5 @@ If a partner has no commits in the repositories, they will receive a 0.
 
 ## Student Notes
 If you have any bonus specs, bonus or any details the TA's should know, you should include it here:
+
+Jorge Saldarriaga added a bonus command where if you press the key 'M' all enemies will be immidietely defeated and a Win screen will appear that also calls you a cheater.  
